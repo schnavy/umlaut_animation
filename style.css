@@ -1,10 +1,25 @@
-canvas {
+canvas, video {
     position: fixed;
     left: 0;
     top: 0;
-    
+    z-index: 100;
     width: 100vw;
     height: 100vh;
     object-fit: cover;
     object-position: center;
+    mix-blend-mode:screen;
+
+  }
+
+  
+  video{
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+  }
+  @media(max-width: 900px){
+    video{
+        width: 100vw;
+        height: 120vh;    
+      }
   }

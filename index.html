@@ -14,11 +14,22 @@
             .content{
             height:7000px;
         }
+        .background-video video{
+            position: fixed;
+            width: 100vw;
+        }
 
     </style>
 </head>
 <body>
-    <div class="content" >
+    <div class="lay-content" >
+        <div class="cover-region">
+            <div class="background-video">
+                <video muted autoplay preload loop>
+                    <source src="public/BG_Desktop.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
     </div>
     <canvas id="frame-overlay" />
 </body>
