@@ -1,8 +1,13 @@
 // ------ CONFIG ------
+
 const FRAME_DELAY = 0 // höhere Zahl = niederigere Frame Rate
 const SPEED = 7 // höhere Zahl = schneller
+const INTRO_SPEED = 40 // ms zwischen Frames -> niedrigere Zahl = schneller
 
-const INTRO_COUNT = 34
+
+// ------ SETUP ------
+
+const INTRO_COUNT = 35
 const FRAME_COUNT = 29
 
 const INTRO_FILE_PREFIX = 'public/Intro_web/Echo-Umlaut_INTRO_'
@@ -11,7 +16,11 @@ const INTRO_FILE_PREFIX_MOBILE = 'public/Intro_web/Echo-Umlaut_INTRO_'
 const FILE_PREFIX = 'public/scroll_web/Echo-Umlaut_'
 const FILE_PREFIX_MOBILE = 'public/scroll_web/Echo-Umlaut_'
 
-// Init
+
+
+
+
+//  INIT
 const IS_TOUCH = 'ontouchstart' in window || navigator.msMaxTouchPoints > 0
 let IS_MOBILE = window.innerWidth <= 1000
 let counter = 0
@@ -21,7 +30,7 @@ let intro_over = false
 
 window.addEventListener('resize', e => (size = updateSize()), true)
 
-//PRELOADER
+//  PRELOADER
 
 const preloadImages = () => {
   intro = []
@@ -38,7 +47,8 @@ const preloadImages = () => {
 
 preloadImages()
 
-// Paint Canvas
+
+// PAINT CANVAS
 
 const html = document.documentElement
 const canvas = document.querySelector('canvas')
@@ -49,24 +59,28 @@ img.src = INTRO_FILE_PREFIX_MOBILE + pad(0) + '.jpg'
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
 
+
 // INTRO
 
-img.onload = (function intro (i) {
-  setTimeout(function () {
-    console.log('hello') //  your code here
-    img.src = INTRO_FILE_PREFIX_MOBILE + pad(i) + '.jpg'
-    context.drawImage(
-      img,
-      canvas.width / 2 - size / 2,
-      canvas.height / 2 - size / 2,
-      size,
-      size
-    )
-    ++i < INTRO_COUNT ? intro(i) : activate_scroll()
-  }, 40)
-})(0)
+setTimeout(() => {
+  img.onload = (function intro (i) {
+    setTimeout(function () {
+      console.log('hello') //  your code here
+      img.src = INTRO_FILE_PREFIX_MOBILE + pad(i) + '.jpg'
+      context.drawImage(
+        img,
+        canvas.width / 2 - size / 2,
+        canvas.height / 2 - size / 2,
+        size,
+        size
+      )
+      ++i < INTRO_COUNT ? intro(i) : activate_scroll()
+    }, INTRO_SPEED)
+  })(0)
+}, 500);
 
-// Scroll Animation
+
+//  SCROLL ANIMATION
 
 function activate_scroll () {
   if (IS_TOUCH) {
@@ -97,7 +111,8 @@ function activate_scroll () {
   }
 }
 
-// HELFER
+
+//  HELFER
 
 function pad (num) {
   var s = '000000000' + num
