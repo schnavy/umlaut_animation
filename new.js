@@ -2,8 +2,8 @@
 
 const FRAME_DELAY = 0 // höhere Zahl = niederigere Frame Rate
 const SCROLL_ANIMATION_SPEED = 7 // höhere Zahl = schneller
-const INTRO_SPEED = 20 // in ms - Zeit zwischen Frames -> niedrigere Zahl = schneller
-const START_DELAY = 1000 // in ms - Delay bevor das Into beginnt
+const INTRO_SPEED = 30 // in ms - Zeit zwischen Frames -> niedrigere Zahl = schneller
+const START_DELAY = 1400 // in ms - Delay bevor das Into beginnt
 
 // ------ SETUP ------
 
@@ -27,17 +27,19 @@ let intro_over = false
 window.addEventListener('resize', e => (size = updateSize()), true)
 
 //  PRELOADER
-
 let intro_images = []
-let images = []
-
 for (let i = 0; i < INTRO_COUNT; i++) {
   intro_images[i] = new Image()
-  intro_images[i].src = INTRO_FILE_PREFIX_MOBILE + pad(i) + '.jpg'
+  intro_images[i].src = IS_MOBILE
+    ? INTRO_FILE_PREFIX_MOBILE + pad(i) + '.jpg'
+    : INTRO_FILE_PREFIX + pad(i) + '.jpg'
 }
-for (let i = 1; i < FRAME_COUNT; i++) {
+let images = []
+for (let i = 0; i < FRAME_COUNT; i++) {
   images[i] = new Image()
-  images[i].src = FILE_PREFIX_MOBILE + pad(i) + '.jpg'
+  images[i].src = IS_MOBILE
+    ? FILE_PREFIX_MOBILE + pad(i) + '.jpg'
+    : FILE_PREFIX + pad(i) + '.jpg'
 }
 
 // PAINT CANVAS
@@ -45,14 +47,14 @@ for (let i = 1; i < FRAME_COUNT; i++) {
 const html = document.documentElement
 const canvas = document.querySelector('canvas')
 const context = canvas.getContext('2d')
-let img = new Image();
+let img = new Image()
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
 
 // INTRO
 
 setTimeout(() => {
-  (function intro (i) {
+  ;(function intro (i) {
     setTimeout(function () {
       context.drawImage(
         intro_images[i],
@@ -104,22 +106,25 @@ function pad (num) {
   return s.substring(s.length - 5, s.length)
 }
 
-function currentFrame (num) {
-  // console.log(pad(num % FRAME_COUNT))
-  if (IS_TOUCH) {
-    num = num % FRAME_COUNT
-  }
-  if (IS_MOBILE) {
-    return FILE_PREFIX_MOBILE + pad(num) + '.jpg'
-  } else {
-    return FILE_PREFIX + pad(num) + '.jpg'
-  }
-}
+// function currentFrame (num) {
+//   // console.log(pad(num % FRAME_COUNT))
+//   if (IS_TOUCH) {
+//     num = num % FRAME_COUNT
+//   }
+//   if (IS_MOBILE) {
+//     return FILE_PREFIX_MOBILE + pad(num) + '.jpg'
+//   } else {
+//     return FILE_PREFIX + pad(num) + '.jpg'
+//   }
+// }
 
 const updateImage = index => {
-  img.src = currentFrame(index)
+  if (IS_TOUCH) {
+    index = index % FRAME_COUNT
+  }
+  //img.src = currentFrame(index)
   context.drawImage(
-    img,
+    images[index],
     canvas.width / 2 - size / 2,
     canvas.height / 2 - size / 2,
     size,
