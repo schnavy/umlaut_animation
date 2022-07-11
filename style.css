@@ -1,4 +1,4 @@
-canvas, video {
+canvas {
     position: fixed;
     left: 0;
     top: 0;
@@ -10,6 +10,8 @@ canvas, video {
     mix-blend-mode:screen;
 
   }
+
+  
 
   
   video{
