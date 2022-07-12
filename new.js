@@ -10,11 +10,17 @@ const START_DELAY = 1400 // in ms - Delay bevor das Into beginnt
 const INTRO_COUNT = 35
 const FRAME_COUNT = 29
 
-const INTRO_FILE_PREFIX = 'public/Intro_web_m/Echo-Umlaut_INTRO_m_'
-const INTRO_FILE_PREFIX_MOBILE = 'public/Intro_web_s/Echo-Umlaut_INTRO_s_'
+// const INTRO_FILE_PREFIX = 'public/Intro_web_m/Echo-Umlaut_INTRO_m_'
+// const INTRO_FILE_PREFIX_MOBILE = 'public/Intro_web_s/Echo-Umlaut_INTRO_s_'
 
-const FILE_PREFIX = 'public/scroll_web_m/Echo-Umlaut_m_'
-const FILE_PREFIX_MOBILE = 'public/scroll_web_s/Echo-Umlaut_s_'
+// const FILE_PREFIX = 'public/scroll_web_m/Echo-Umlaut_m_'
+// const FILE_PREFIX_MOBILE = 'public/scroll_web_s/Echo-Umlaut_s_'
+
+const INTRO_FILE_PREFIX = 'https://umlautfilms.de/wp-content/uploads/2022/07/Echo-Umlaut_INTRO_m_'
+const INTRO_FILE_PREFIX_MOBILE = 'https://umlautfilms.de/wp-content/uploads/2022/07/Echo-Umlaut_INTRO_s_'
+
+const FILE_PREFIX = 'https://umlautfilms.de/wp-content/uploads/2022/07/Echo-Umlaut_m_'
+const FILE_PREFIX_MOBILE = 'https://umlautfilms.de/wp-content/uploads/2022/07/Echo-Umlaut_s_'
 
 //  INIT
 const IS_TOUCH = 'ontouchstart' in window || navigator.msMaxTouchPoints > 0
